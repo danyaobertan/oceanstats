@@ -1,0 +1,341 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "OceanStats is a backend API implementation for a set of underwater sensors developed as a test task for Helo Labs.",
+        "title": "OceanStats API (Go language test task)",
+        "termsOfService": "https://github.com/danyaobertan/oceanstats",
+        "contact": {
+            "name": "Danyil-Mykola Obertan",
+            "email": "danyilmykolaobertan@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api/",
+    "paths": {
+        "/statistics/group/{groupName}/species": {
+            "get": {
+                "description": "Responds with the full list of species (with counts) currently detected inside the group",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get the full list of species (with counts) currently detected inside the group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "alpha",
+                        "example": "alpha",
+                        "description": "Name of the group",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/statistics/group/{groupName}/species/top/{N}": {
+            "get": {
+                "description": "Responds with the top N species of a group between two dates\nDates are not required",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get the top N species of a group between two dates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "alpha",
+                        "example": "alpha",
+                        "description": "Name of the group",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 5,
+                        "example": 5,
+                        "description": "Number of species to return",
+                        "name": "N",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1689231951,
+                        "example": 1689231951,
+                        "description": "Start date of the interval",
+                        "name": "from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1689262458,
+                        "example": 1689262458,
+                        "description": "End date of the interval",
+                        "name": "till",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/controllers.SpeciesCount"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/statistics/group/{groupName}/temperature/average": {
+            "get": {
+                "description": "Responds with the current average temperature inside the group",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get current average temperature inside the group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "alpha",
+                        "example": "alpha",
+                        "description": "Name of the group",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/statistics/group/{groupName}/transparency/average": {
+            "get": {
+                "description": "Responds with the current average transparency inside the group",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get current average transparency inside the group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "alpha",
+                        "example": "alpha",
+                        "description": "Name of the group",
+                        "name": "groupName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/statistics/region/temperature/max": {
+            "get": {
+                "description": "Responds with the current minimum temperature inside the region\nThe region is the area represented by the range of coordinates",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get the current minimum temperature inside the region",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 100,
+                        "example": 1000,
+                        "description": "Minimum x coordinate of the region",
+                        "name": "xMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 500,
+                        "example": 500,
+                        "description": "Maximum x coordinate of the region",
+                        "name": "xMax",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "example": 0,
+                        "description": "Minimum y coordinate of the region",
+                        "name": "yMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1000,
+                        "example": 1000,
+                        "description": "Maximum y coordinate of the region",
+                        "name": "yMax",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "example": 0,
+                        "description": "Minimum z coordinate of the region",
+                        "name": "zMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 5000,
+                        "example": 5000,
+                        "description": "Maximum z coordinate of the region",
+                        "name": "zMax",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/statistics/region/temperature/min": {
+            "get": {
+                "description": "Responds with the current minimum temperature inside the region\nThe region is the area represented by the range of coordinates",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get the current maximum temperature inside the region",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 100,
+                        "example": 1000,
+                        "description": "Minimum x coordinate of the region",
+                        "name": "xMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 500,
+                        "example": 500,
+                        "description": "Maximum x coordinate of the region",
+                        "name": "xMax",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "example": 0,
+                        "description": "Minimum y coordinate of the region",
+                        "name": "yMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1000,
+                        "example": 1000,
+                        "description": "Maximum y coordinate of the region",
+                        "name": "yMax",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "example": 0,
+                        "description": "Minimum z coordinate of the region",
+                        "name": "zMin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 5000,
+                        "example": 5000,
+                        "description": "Maximum z coordinate of the region",
+                        "name": "zMax",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/statistics/sensor/{codename}/temperature/average": {
+            "get": {
+                "description": "Responds with the average temperature detected by a particular sensor between the specified date/time pairs (UNIX timestamps)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "statistics"
+                ],
+                "summary": "Get the average temperature detected by a particular sensor between the specified date/time pairs (UNIX timestamps)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "alpha 5",
+                        "example": "alpha 5",
+                        "description": "Codename of the sensor",
+                        "name": "codename",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1689231951",
+                        "example": "1689231951",
+                        "description": "Start date of the interval",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1689262458",
+                        "example": "1689262458",
+                        "description": "End date of the interval",
+                        "name": "till",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "controllers.SpeciesCount": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

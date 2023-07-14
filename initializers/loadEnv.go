@@ -13,7 +13,10 @@ type Config struct {
 
 	ClientOrigin string `mapstructure:"CLIENT_ORIGIN"`
 
-	RedisURL string `mapstructure:"REDIS_URL"`
+	RedisURL      string `mapstructure:"REDIS_URL"`
+	RedisPassword string `mapstructure:"REDIS_PASSWORD"`
+	RedisDb       int    `mapstructure:"REDIS_DB"`
+	RedisTtl      int    `mapstructure:"REDIS_TTL"`
 }
 
 func LoadConfig(path string) (config Config, err error) {

@@ -1,0 +1,259 @@
+basePath: /api/
+definitions:
+  controllers.SpeciesCount:
+    properties:
+      count:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: danyilmykolaobertan@gmail.com
+    name: Danyil-Mykola Obertan
+  description: OceanStats is a backend API implementation for a set of underwater
+    sensors developed as a test task for Helo Labs.
+  termsOfService: https://github.com/danyaobertan/oceanstats
+  title: OceanStats API (Go language test task)
+  version: "1.0"
+paths:
+  /statistics/group/{groupName}/species:
+    get:
+      description: Responds with the full list of species (with counts) currently
+        detected inside the group
+      parameters:
+      - default: alpha
+        description: Name of the group
+        example: alpha
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get the full list of species (with counts) currently detected inside
+        the group
+      tags:
+      - statistics
+  /statistics/group/{groupName}/species/top/{N}:
+    get:
+      description: |-
+        Responds with the top N species of a group between two dates
+        Dates are not required
+      parameters:
+      - default: alpha
+        description: Name of the group
+        example: alpha
+        in: path
+        name: groupName
+        required: true
+        type: string
+      - default: 5
+        description: Number of species to return
+        example: 5
+        in: path
+        name: "N"
+        required: true
+        type: integer
+      - default: 1689231951
+        description: Start date of the interval
+        example: 1689231951
+        in: query
+        name: from
+        type: integer
+      - default: 1689262458
+        description: End date of the interval
+        example: 1689262458
+        in: query
+        name: till
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/controllers.SpeciesCount'
+            type: array
+      summary: Get the top N species of a group between two dates
+      tags:
+      - statistics
+  /statistics/group/{groupName}/temperature/average:
+    get:
+      description: Responds with the current average temperature inside the group
+      parameters:
+      - default: alpha
+        description: Name of the group
+        example: alpha
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get current average temperature inside the group
+      tags:
+      - statistics
+  /statistics/group/{groupName}/transparency/average:
+    get:
+      description: Responds with the current average transparency inside the group
+      parameters:
+      - default: alpha
+        description: Name of the group
+        example: alpha
+        in: path
+        name: groupName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get current average transparency inside the group
+      tags:
+      - statistics
+  /statistics/region/temperature/max:
+    get:
+      description: |-
+        Responds with the current minimum temperature inside the region
+        The region is the area represented by the range of coordinates
+      parameters:
+      - default: 100
+        description: Minimum x coordinate of the region
+        example: 1000
+        in: query
+        name: xMin
+        required: true
+        type: integer
+      - default: 500
+        description: Maximum x coordinate of the region
+        example: 500
+        in: query
+        name: xMax
+        required: true
+        type: integer
+      - default: 0
+        description: Minimum y coordinate of the region
+        example: 0
+        in: query
+        name: yMin
+        required: true
+        type: integer
+      - default: 1000
+        description: Maximum y coordinate of the region
+        example: 1000
+        in: query
+        name: yMax
+        required: true
+        type: integer
+      - default: 0
+        description: Minimum z coordinate of the region
+        example: 0
+        in: query
+        name: zMin
+        required: true
+        type: integer
+      - default: 5000
+        description: Maximum z coordinate of the region
+        example: 5000
+        in: query
+        name: zMax
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get the current minimum temperature inside the region
+      tags:
+      - statistics
+  /statistics/region/temperature/min:
+    get:
+      description: |-
+        Responds with the current minimum temperature inside the region
+        The region is the area represented by the range of coordinates
+      parameters:
+      - default: 100
+        description: Minimum x coordinate of the region
+        example: 1000
+        in: query
+        name: xMin
+        required: true
+        type: integer
+      - default: 500
+        description: Maximum x coordinate of the region
+        example: 500
+        in: query
+        name: xMax
+        required: true
+        type: integer
+      - default: 0
+        description: Minimum y coordinate of the region
+        example: 0
+        in: query
+        name: yMin
+        required: true
+        type: integer
+      - default: 1000
+        description: Maximum y coordinate of the region
+        example: 1000
+        in: query
+        name: yMax
+        required: true
+        type: integer
+      - default: 0
+        description: Minimum z coordinate of the region
+        example: 0
+        in: query
+        name: zMin
+        required: true
+        type: integer
+      - default: 5000
+        description: Maximum z coordinate of the region
+        example: 5000
+        in: query
+        name: zMax
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get the current maximum temperature inside the region
+      tags:
+      - statistics
+  /statistics/sensor/{codename}/temperature/average:
+    get:
+      description: Responds with the average temperature detected by a particular
+        sensor between the specified date/time pairs (UNIX timestamps)
+      parameters:
+      - default: alpha 5
+        description: Codename of the sensor
+        example: alpha 5
+        in: path
+        name: codename
+        required: true
+        type: string
+      - default: "1689231951"
+        description: Start date of the interval
+        example: "1689231951"
+        in: query
+        name: from
+        required: true
+        type: string
+      - default: "1689262458"
+        description: End date of the interval
+        example: "1689262458"
+        in: query
+        name: till
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get the average temperature detected by a particular sensor between
+        the specified date/time pairs (UNIX timestamps)
+      tags:
+      - statistics
+swagger: "2.0"

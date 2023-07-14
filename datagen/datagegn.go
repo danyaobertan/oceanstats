@@ -1,8 +1,7 @@
-package main
+package datagen
 
 import (
 	"fmt"
-	"io/ioutil"
 	"math/rand"
 	"strings"
 )
@@ -13,34 +12,52 @@ const mesopelagicBorder float64 = 1000
 const bathypelagicBorder float64 = 4000
 const abyssopelagicBorder float64 = 6000
 
-//type Codename string
-//
-//const (
-//	alpha   = 1
-//	beta    = 2
-//	gamma   = 3
-//	delta   = 4
-//	epsilon = 5
-//	zeta    = 6
-//	eta     = 7
-//	theta   = 8
-//	iota    = 9
-//	kappa   = 10
-//	lambda  = 11
-//	mu      = 12
-//	nu      = 13
-//	xi      = 14
-//	omicron = 15
-//	pi      = 16
-//	rho     = 17
-//	sigma   = 18
-//	tau     = 19
-//	upsilon = 20
-//	phi     = 21
-//	chi     = 22
-//	psi     = 23
-//	omega   = 24
-//)
+const EpipelagicDataRate int = 15
+const MesopelagicDataRate int = 30
+const BathypelagicDataRate int = 60
+const AbyssopelagicDataRate int = 90
+const TrenchesDataRate int = 120
+
+var (
+	EpipelagicSensorGroupNames = map[string]bool{
+		"alpha":   true,
+		"beta":    true,
+		"gamma":   true,
+		"delta":   true,
+		"epsilon": true,
+	}
+
+	MesopelagicSensorGroupNames = map[string]bool{
+		"zeta":  true,
+		"eta":   true,
+		"theta": true,
+		"iota":  true,
+		"kappa": true,
+	}
+
+	BathypelagicSensorGroupNames = map[string]bool{
+		"lambda":  true,
+		"mu":      true,
+		"nu":      true,
+		"xi":      true,
+		"omicron": true,
+	}
+
+	AbyssopelagicSensorGroupNames = map[string]bool{
+		"pi":      true,
+		"rho":     true,
+		"sigma":   true,
+		"tau":     true,
+		"upsilon": true,
+	}
+
+	TrenchesSensorGroupNames = map[string]bool{
+		"phi":   true,
+		"chi":   true,
+		"psi":   true,
+		"omega": true,
+	}
+)
 
 type Sensor struct {
 	Codename    string
@@ -57,8 +74,7 @@ type SensorGroup struct {
 	Sensors []Sensor
 }
 
-// Generating sensor groups and sensors
-func generateSensors() []SensorGroup {
+func GenerateSensors() []SensorGroup {
 	sensorGroups := []SensorGroup{
 		{Name: "alpha"},
 		{Name: "beta"},
@@ -86,45 +102,6 @@ func generateSensors() []SensorGroup {
 		{Name: "omega"},
 	}
 
-	epipelagicSensorGroupNames := map[string]bool{
-		"alpha":   true,
-		"beta":    true,
-		"gamma":   true,
-		"delta":   true,
-		"epsilon": true,
-	}
-
-	mesopelagicSensorGroupNames := map[string]bool{
-		"zeta":  true,
-		"eta":   true,
-		"theta": true,
-		"iota":  true,
-		"kappa": true,
-	}
-
-	bathypelagicSensorGroupNames := map[string]bool{
-		"lambda":  true,
-		"mu":      true,
-		"nu":      true,
-		"xi":      true,
-		"omicron": true,
-	}
-
-	abyssopelagicSensorGroupNames := map[string]bool{
-		"pi":      true,
-		"rho":     true,
-		"sigma":   true,
-		"tau":     true,
-		"upsilon": true,
-	}
-
-	trenchesSensorGroupNames := map[string]bool{
-		"phi":   true,
-		"chi":   true,
-		"psi":   true,
-		"omega": true,
-	}
-
 	// Generating sensors within each group
 	for i, group := range sensorGroups {
 		//s represents the sensor group index
@@ -137,13 +114,13 @@ func generateSensors() []SensorGroup {
 		// Generating sensors for Sunlight Zone (Epipelagic)
 		// Depth Range: 0-200 meters
 		// Length from Shore: Extends from the coast to about 200 meters
-		if epipelagicSensorGroupNames[group.Name] {
+		if EpipelagicSensorGroupNames[group.Name] {
 			//fmt.Println(i, group.Name)
 			for j := 0; j <= 10; j++ {
 				sensor := Sensor{
 					Codename:    fmt.Sprintf("%s %d", group.Name, j),
 					Coordinates: generateCoordinates(float64(j*100), float64(s*40), float64((s+1)*40), float64(s*40), float64((s+1)*40)),
-					DataRate:    generateDataRate(30, 45),
+					DataRate:    EpipelagicDataRate,
 				}
 				sensorGroups[i].Sensors = append(sensorGroups[i].Sensors, sensor)
 			}
@@ -152,13 +129,13 @@ func generateSensors() []SensorGroup {
 		// Generating sensors for Twilight Zone (Mesopelagic)
 		// Depth Range: 200-1000 meters
 		// Length from Shore: Extends from 200 meters to about 1,000 meters
-		if mesopelagicSensorGroupNames[group.Name] {
+		if MesopelagicSensorGroupNames[group.Name] {
 			//fmt.Println(i, group.Name)
 			for j := 0; j <= 10; j++ {
 				sensor := Sensor{
 					Codename:    fmt.Sprintf("%s %d", group.Name, j),
 					Coordinates: generateCoordinates(float64(j*200), float64(s*160)+epipelagicBorder, float64((s+1)*160), float64(s*160)+epipelagicBorder, float64((s+1)*160)),
-					DataRate:    generateDataRate(45, 60),
+					DataRate:    MesopelagicDataRate,
 				}
 				sensorGroups[i].Sensors = append(sensorGroups[i].Sensors, sensor)
 			}
@@ -167,13 +144,13 @@ func generateSensors() []SensorGroup {
 		// Generating sensors for Midnight Zone (Bathypelagic)
 		// Depth Range: 1000-4000 meters
 		// Length from Shore: Extends from 1,000 meters to about 4,000 meters
-		if bathypelagicSensorGroupNames[group.Name] {
+		if BathypelagicSensorGroupNames[group.Name] {
 			//fmt.Println(i, group.Name)
 			for j := 0; j <= 10; j++ {
 				sensor := Sensor{
 					Codename:    fmt.Sprintf("%s %d", group.Name, j),
 					Coordinates: generateCoordinates(float64(j*400), float64(s*600)+mesopelagicBorder, float64((s+1)*600), float64(s*600)+mesopelagicBorder, float64((s+1)*600)),
-					DataRate:    generateDataRate(60, 90),
+					DataRate:    BathypelagicDataRate,
 				}
 				sensorGroups[i].Sensors = append(sensorGroups[i].Sensors, sensor)
 			}
@@ -182,13 +159,13 @@ func generateSensors() []SensorGroup {
 		// Generating sensors for Abyss (Abyssopelagic)
 		// Depth Range: 4000-6000 meters
 		// Length from Shore: Extends from 4,000 meters to about 6,000 meters
-		if abyssopelagicSensorGroupNames[group.Name] {
+		if AbyssopelagicSensorGroupNames[group.Name] {
 			//fmt.Println(i, group.Name)
 			for j := 0; j <= 10; j++ {
 				sensor := Sensor{
 					Codename:    fmt.Sprintf("%s %d", group.Name, j),
 					Coordinates: generateCoordinates(float64(j*800), float64(s*400)+bathypelagicBorder, float64((s+1)*400), float64(s*400)+bathypelagicBorder, float64((s+1)*400)),
-					DataRate:    generateDataRate(90, 120),
+					DataRate:    AbyssopelagicDataRate,
 				}
 				sensorGroups[i].Sensors = append(sensorGroups[i].Sensors, sensor)
 			}
@@ -197,13 +174,13 @@ func generateSensors() []SensorGroup {
 		// Generating sensors for Trenches
 		// Depth Range: 6000-11000 meters
 		// Length from Shore: Extends from 6,000 meters to the bottom of the ocean
-		if trenchesSensorGroupNames[group.Name] {
+		if TrenchesSensorGroupNames[group.Name] {
 			//fmt.Println(i, group.Name)
 			for j := 0; j <= 10; j++ {
 				sensor := Sensor{
 					Codename:    fmt.Sprintf("%s %d", group.Name, j),
 					Coordinates: generateCoordinates(float64(j*1600), float64(s*1250)+abyssopelagicBorder, float64((s+1)*1250), float64(s*1250)+abyssopelagicBorder, float64((s+1)*1250)),
-					DataRate:    generateDataRate(120, 240),
+					DataRate:    TrenchesDataRate,
 				}
 				sensorGroups[i].Sensors = append(sensorGroups[i].Sensors, sensor)
 			}
@@ -218,61 +195,31 @@ func generateCoordinates(X, minY, maxY, minZ, maxZ float64) Coordinates {
 	// Generate random coordinates within the desired range
 	return Coordinates{
 		X: X + generateDisplacement(),
-		Y: generateRandomFloat(minY, maxY),
-		Z: generateRandomFloat(minZ, maxZ),
+		Y: GenerateRandomFloat(minY, maxY),
+		Z: GenerateRandomFloat(minZ, maxZ),
 	}
 }
 
-func generateDataRate(min, max int) int {
-	// Generating a random data rate in seconds
-	return generateRandomInt(min, max)
-}
+//func generateDataRate(min, max int) int {
+//	// Generating a random data rate in seconds
+//	return generateRandomInt(min, max)
+//}
 
-func generateRandomFloat(min, max float64) float64 {
+func GenerateRandomFloat(min, max float64) float64 {
 	// Generating a random floating-point number within the desired range
 	return min + rand.Float64()*(max-min)
 }
 
-func generateRandomInt(min, max int) int {
+func GenerateRandomInt(min, max int) int {
 	// Generating a random integer within the desired range
 	return min + rand.Intn(max-min+1)
 }
 
 func generateDisplacement() float64 {
-	return generateRandomFloat(-precision, precision)
+	return GenerateRandomFloat(-precision, precision)
 }
 
-func main() {
-	// Generating the sensor groups and sensors
-	sensorGroups := generateSensors()
-	fmt.Println(sensorGroups)
-	// Generating the SQL statements
-	sqlDataGenerationStatements := generateSQLStatements(sensorGroups)
-	//fmt.Println(sqlDataGenerationStatements)
-
-	err := ioutil.WriteFile("initialSQL.txt", []byte(sqlDataGenerationStatements), 0644)
-	if err != nil {
-		fmt.Println("Error writing to file:", err)
-		return
-	}
-
-	fmt.Println("String successfully written to file.")
-
-	//fmt.Println(alpha)
-}
-
-//func generateSQLStatements(sensorGroups []SensorGroup) string {
-//	var sqlDataGenerationStatements string
-//	sqlDataGenerationStatements = fmt.Sprintf("INSERT INTO sensors (codename, coordinate_x, coordinate_y, coordinate_z, data_rate, sensor_group_id) \n VALUES")
-//	for i, group := range sensorGroups {
-//		for _, sensor := range sensorGroups[i].Sensors {
-//			sqlDataGenerationStatements = fmt.Sprintf("%s('%s', '%.2f', '%.2f', '%.2f' '%d', '%s'),\n", sqlDataGenerationStatements, sensor.Codename, sensor.Coordinates.X, sensor.Coordinates.Y, sensor.Coordinates.Z, sensor.DataRate, Codename(group.Name))
-//		}
-//	}
-//	return sqlDataGenerationStatements
-//}
-
-func generateSQLStatements(sensorGroups []SensorGroup) string {
+func GenerateSQLStatements(sensorGroups []SensorGroup) string {
 
 	var sqlDataGenerationStatements strings.Builder
 	sqlDataGenerationStatements.WriteString("INSERT INTO sensors (codename, coordinate_x, coordinate_y, coordinate_z, data_rate, sensor_group_id) \n VALUES")
