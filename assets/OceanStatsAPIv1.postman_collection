@@ -1,0 +1,1042 @@
+{
+	"info": {
+		"_postman_id": "dc6b9cbb-2ba1-4ecd-a396-c2caccdb2d4a",
+		"name": "OceanStatsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17357531"
+	},
+	"item": [
+		{
+			"name": "Initial",
+			"item": [
+				{
+					"name": "Healthchecker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/healthchecker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"healthchecker"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Healthchecker",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/healthchecker",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"healthchecker"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jul 2023 19:33:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Golang language test task\",\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SensorGroup",
+			"item": [
+				{
+					"name": "Create Sensor Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"alpha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/sensorgroup",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensorgroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sensor Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/sensorgroup/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensorgroup",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Sensor Group",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/sensorgroup/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"sensorgroup",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jul 2023 19:33:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"alpha\"\n    },\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Sensor Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/sensorgroup?page=1&limit=100",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensorgroup"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Sensor Group",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/sensorgroup?page=1&limit=100",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"sensorgroup"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "100"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Jul 2023 19:33:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "624"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"alpha\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"beta\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"gamma\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"delta\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"epsilon\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"zeta\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"eta\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"theta\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"iota\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"kappa\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"lambda\"\n        },\n        {\n            \"id\": 12,\n            \"title\": \"mu\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"nu\"\n        },\n        {\n            \"id\": 14,\n            \"title\": \"xi\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"omicron\"\n        },\n        {\n            \"id\": 16,\n            \"title\": \"pi\"\n        },\n        {\n            \"id\": 17,\n            \"title\": \"rho\"\n        },\n        {\n            \"id\": 18,\n            \"title\": \"sigma\"\n        },\n        {\n            \"id\": 19,\n            \"title\": \"tau\"\n        },\n        {\n            \"id\": 20,\n            \"title\": \"upsilon\"\n        },\n        {\n            \"id\": 21,\n            \"title\": \"phi\"\n        },\n        {\n            \"id\": 22,\n            \"title\": \"chi\"\n        },\n        {\n            \"id\": 23,\n            \"title\": \"psi\"\n        },\n        {\n            \"id\": 24,\n            \"title\": \"omega\"\n        }\n    ],\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Sensor Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Alpha\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8000/api/sensorgroup/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensorgroup",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sensor Group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/api/sensorgroup/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensorgroup",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sensor",
+			"item": [
+				{
+					"name": "Get All Sensor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/sensor?page=1&limit=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sensor"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Sensor",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/sensor?page=1&limit=3",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"sensor"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Jul 2023 10:53:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "392"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"ID\": 1,\n            \"Codename\": \"alpha 0\",\n            \"CoordinateX\": 6.5,\n            \"CoordinateY\": 11.7,\n            \"CoordinateZ\": 12.69,\n            \"DataRate\": 45,\n            \"SensorGroupID\": 1\n        },\n        {\n            \"ID\": 2,\n            \"Codename\": \"alpha 1\",\n            \"CoordinateX\": 91.76,\n            \"CoordinateY\": 28.9,\n            \"CoordinateZ\": 34.82,\n            \"DataRate\": 34,\n            \"SensorGroupID\": 1\n        },\n        {\n            \"ID\": 3,\n            \"Codename\": \"alpha 2\",\n            \"CoordinateX\": 209.13,\n            \"CoordinateY\": 33.59,\n            \"CoordinateZ\": 22.06,\n            \"DataRate\": 40,\n            \"SensorGroupID\": 1\n        }\n    ],\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Statistics",
+			"item": [
+				{
+					"name": "Get Group Average Transparency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/group/alpha/transparency/average",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"group",
+								"alpha",
+								"transparency",
+								"average"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Group Average Transparency",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/group/alpha/transparency/average",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"group",
+										"alpha",
+										"transparency",
+										"average"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"average_transparency\": 94.92644836272041\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Group Average Temperature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/group/alpha/temperature/average",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"group",
+								"alpha",
+								"temperature",
+								"average"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Group Average Temperature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/group/alpha/temperature/average",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"group",
+										"alpha",
+										"temperature",
+										"average"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"average_temperature\": 22.890987405541562\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Group Species",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/group/alpha/species",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"group",
+								"alpha",
+								"species"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Group Species",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/group/alpha/species",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"group",
+										"alpha",
+										"species"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1161"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"Name\": \"Atlantic Salmon\",\n        \"Count\": 349\n    },\n    {\n        \"Name\": \"Clown Triggerfish\",\n        \"Count\": 219\n    },\n    {\n        \"Name\": \"California Grunion\",\n        \"Count\": 282\n    },\n    {\n        \"Name\": \"Bluehead Wrasse\",\n        \"Count\": 174\n    },\n    {\n        \"Name\": \"Flashlight Fish\",\n        \"Count\": 243\n    },\n    {\n        \"Name\": \"John Dory\",\n        \"Count\": 282\n    },\n    {\n        \"Name\": \"Blue Tang\",\n        \"Count\": 284\n    },\n    {\n        \"Name\": \"Atlantic Wolffish\",\n        \"Count\": 265\n    },\n    {\n        \"Name\": \"Chilean Jack Mackerel\",\n        \"Count\": 293\n    },\n    {\n        \"Name\": \"Leafy Seadragon\",\n        \"Count\": 303\n    },\n    {\n        \"Name\": \"Green Moray Eel\",\n        \"Count\": 246\n    },\n    {\n        \"Name\": \"Great Barracuda\",\n        \"Count\": 249\n    },\n    {\n        \"Name\": \"Common Clownfish\",\n        \"Count\": 294\n    },\n    {\n        \"Name\": \"Atlantic Trumpetfish\",\n        \"Count\": 269\n    },\n    {\n        \"Name\": \"Guineafowl Puffer\",\n        \"Count\": 314\n    },\n    {\n        \"Name\": \"French Angelfish\",\n        \"Count\": 260\n    },\n    {\n        \"Name\": \"Chinook Salmon\",\n        \"Count\": 327\n    },\n    {\n        \"Name\": \"Atlantic Goliath Grouper\",\n        \"Count\": 224\n    },\n    {\n        \"Name\": \"Chilean Common Hake\",\n        \"Count\": 308\n    },\n    {\n        \"Name\": \"Coelacanth\",\n        \"Count\": 187\n    },\n    {\n        \"Name\": \"Atlantic Bluefin Tuna\",\n        \"Count\": 261\n    },\n    {\n        \"Name\": \"Banded Butterflyfish\",\n        \"Count\": 198\n    },\n    {\n        \"Name\": \"Atlantic Cod\",\n        \"Count\": 292\n    },\n    {\n        \"Name\": \"Bluebanded Goby\",\n        \"Count\": 243\n    },\n    {\n        \"Name\": \"Blue Marlin\",\n        \"Count\": 254\n    },\n    {\n        \"Name\": \"Beluga Sturgeon\",\n        \"Count\": 293\n    },\n    {\n        \"Name\": \"Common Fangtooth\",\n        \"Count\": 262\n    },\n    {\n        \"Name\": \"Deep Sea Anglerfish\",\n        \"Count\": 221\n    },\n    {\n        \"Name\": \"Common Dolphinfish\",\n        \"Count\": 229\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Top Group Species",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/group/alpha/species/top/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"group",
+								"alpha",
+								"species",
+								"top",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Top Group Species",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/group/alpha/species/top/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"group",
+										"alpha",
+										"species",
+										"top",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"top_species\": [\n        {\n            \"Name\": \"Atlantic Salmon\",\n            \"Count\": 349\n        },\n        {\n            \"Name\": \"Chinook Salmon\",\n            \"Count\": 327\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Top Group Species Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/group/alpha/species/top/2?from=1689231951&till=1689245951",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"group",
+								"alpha",
+								"species",
+								"top",
+								"2"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "1689231951"
+								},
+								{
+									"key": "till",
+									"value": "1689245951"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Top Group Species Between Dates",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/group/alpha/species/top/2?from=1689231951&till=1689245951",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"group",
+										"alpha",
+										"species",
+										"top",
+										"2"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "1689231951"
+										},
+										{
+											"key": "till",
+											"value": "1689245951"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:50 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "108"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"top_species_between_dates\": [\n        {\n            \"Name\": \"Guineafowl Puffer\",\n            \"Count\": 86\n        },\n        {\n            \"Name\": \"Chinook Salmon\",\n            \"Count\": 80\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Region Min Temperature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/region/temperature/min?xMin=100&xMax=500&yMin=0&yMax=1000&zMin=0&zMax=5000",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"region",
+								"temperature",
+								"min"
+							],
+							"query": [
+								{
+									"key": "xMin",
+									"value": "100"
+								},
+								{
+									"key": "xMax",
+									"value": "500"
+								},
+								{
+									"key": "yMin",
+									"value": "0"
+								},
+								{
+									"key": "yMax",
+									"value": "1000"
+								},
+								{
+									"key": "zMin",
+									"value": "0"
+								},
+								{
+									"key": "zMax",
+									"value": "5000"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Region Min Temperature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/region/temperature/min?xMin=100&xMax=500&yMin=0&yMax=1000&zMin=0&zMax=5000",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"region",
+										"temperature",
+										"min"
+									],
+									"query": [
+										{
+											"key": "xMin",
+											"value": "100"
+										},
+										{
+											"key": "xMax",
+											"value": "500"
+										},
+										{
+											"key": "yMin",
+											"value": "0"
+										},
+										{
+											"key": "yMax",
+											"value": "1000"
+										},
+										{
+											"key": "zMin",
+											"value": "0"
+										},
+										{
+											"key": "zMax",
+											"value": "5000"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:52 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"minimum_temperature\": 14.51\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Region Max Temperature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/statistics/region/temperature/max?xMin=100&xMax=500&yMin=0&yMax=1000&zMin=0&zMax=5000",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"region",
+								"temperature",
+								"max"
+							],
+							"query": [
+								{
+									"key": "xMin",
+									"value": "100"
+								},
+								{
+									"key": "xMax",
+									"value": "500"
+								},
+								{
+									"key": "yMin",
+									"value": "0"
+								},
+								{
+									"key": "yMax",
+									"value": "1000"
+								},
+								{
+									"key": "zMin",
+									"value": "0"
+								},
+								{
+									"key": "zMax",
+									"value": "5000"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Region Max Temperature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/api/statistics/region/temperature/max?xMin=100&xMax=500&yMin=0&yMax=1000&zMin=0&zMax=5000",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"region",
+										"temperature",
+										"max"
+									],
+									"query": [
+										{
+											"key": "xMin",
+											"value": "100"
+										},
+										{
+											"key": "xMax",
+											"value": "500"
+										},
+										{
+											"key": "yMin",
+											"value": "0"
+										},
+										{
+											"key": "yMax",
+											"value": "1000"
+										},
+										{
+											"key": "zMin",
+											"value": "0"
+										},
+										{
+											"key": "zMax",
+											"value": "5000"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"maximum_temperature\": 23.27\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Sensor Temperature Average Between Dates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/statistics/sensor/alpha%203/temperature/average?from=1689231951&till=1689262458",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"statistics",
+								"sensor",
+								"alpha%203",
+								"temperature",
+								"average"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "1689231951"
+								},
+								{
+									"key": "till",
+									"value": "1689262458"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Sensor Temperature Average Between Dates",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/statistics/sensor/alpha%203/temperature/average?from=1689231951&till=1689262458",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"statistics",
+										"sensor",
+										"alpha%203",
+										"temperature",
+										"average"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "1689231951"
+										},
+										{
+											"key": "till",
+											"value": "1689262458"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 Jul 2023 17:44:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"average_temperature_between_dates\": 22.642215909090908\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
